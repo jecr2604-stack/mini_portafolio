@@ -13,7 +13,9 @@ const descText = modal.querySelector('.description p');
 
 document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('click', () => {
-        carousel.innerHTML = ''; // Limpiar previo
+        carousel.innerHTML = '';
+        carousel.scrollTo({left: 0,behavior: 'instant'});
+
         const images = card.dataset.images.split(',');
         images.forEach(src => {
             const img = document.createElement('img');
@@ -22,6 +24,10 @@ document.querySelectorAll('.project-card').forEach(card => {
         });
         descText.textContent = card.dataset.description;
         modal.classList.add('active');
+
+        requestAnimationFrame(() => {
+            carousel.scrollTo({ left: 0, behavior: 'instant'});
+        });
     });
 });
 
